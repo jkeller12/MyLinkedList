@@ -108,6 +108,23 @@ public class MyLinkedList{
    return str + ("]");
  }
 
+ public String reverseToString()
+ {
+   String str = new String("[");
+   Node current = start;
+   while(current != null)
+   {
+     str = str + current.get();
+     if(current.getNext() != null)
+     {
+       str = str + ", ";
+     }
+     current = current.getNext();
+   }
+
+   return str + ("]");
+ }
+
 
 
 ///////////////////////////////
@@ -165,10 +182,29 @@ public class MyLinkedList{
     size--;
 
     return current.get();
-
   }
  }
 
+
+ /*
+ *@postcondition: All of the elements from other are removed
+ from the other, and connected to the end of this linked list.
+ *@postcondition: The size of other is reduced to 0.
+ *@postcondition: The size of this is now the combined sizes
+ of both original lists
+ */
+ public void extend(MyLinkedList other)
+ {
+   end.setNext(other.start);
+   other.start.setPrev(end);
+
+   size = size + other.size();
+
+   other.start = null;
+   end = other.end;
+   other.end = null;
+   other.size = 0 ; 
+ }
 
 
  //Any helper method that returns a Node object MUST BE PRIVATE!
