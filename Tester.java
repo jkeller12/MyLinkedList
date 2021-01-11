@@ -143,7 +143,7 @@ public class Tester {
             m.add("world");
             m.add("foo");
             m.add("bar");
-            check(test, m.set(1, "huzzah"), "world");
+            check(test, m.set(1, "huzzah"), "huzzah");
             check(test, m.toString(), "[hello, huzzah, foo, bar]");
         } catch(IndexOutOfBoundsException e) {
         } catch(RuntimeException e) {

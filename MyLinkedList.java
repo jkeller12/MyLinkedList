@@ -88,7 +88,8 @@ public class MyLinkedList{
 
  public String set(int index, String value)
  {
-   return NodeIndex(index).set(value);
+   NodeIndex(index).set(value);
+   return value;
  }
 
  public String toString()
