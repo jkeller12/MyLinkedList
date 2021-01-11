@@ -107,19 +107,19 @@ public class MyLinkedList{
 
    return str + ("]");
  }
-
- public String reverseToString()
+/// Implement
+ public String toStringReversed()
  {
    String str = new String("[");
-   Node current = start;
+   Node current = end;
    while(current != null)
    {
      str = str + current.get();
-     if(current.getNext() != null)
+     if(current.getPrev() != null)
      {
        str = str + ", ";
      }
-     current = current.getNext();
+     current = current.getPrev();
    }
 
    return str + ("]");
@@ -203,7 +203,7 @@ public class MyLinkedList{
    other.start = null;
    end = other.end;
    other.end = null;
-   other.size = 0 ; 
+   other.size = 0 ;
  }
 
 
