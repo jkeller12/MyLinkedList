@@ -39,16 +39,16 @@ public class MyLinkedList{
 
  public void add(int index, String value)
  {
-   size++;
+
    Node current = new Node(value);
 
-   if(index == size-1) // Tail
+   if(index == size) // Tail
    {
      add(value);
    }
 
 // Empty List
-   else if(size == 1) // Empty list
+   else if(size == 0) // Empty list
    {
      add(value);
 
@@ -62,6 +62,8 @@ public class MyLinkedList{
 
     n.setPrev(current);
     start = current;
+    size++;
+
   }
 
   else // Middle
@@ -73,6 +75,7 @@ public class MyLinkedList{
 
     n.setPrev(current);
     p.setNext(current);
+    size++;
   }
   return;
 
