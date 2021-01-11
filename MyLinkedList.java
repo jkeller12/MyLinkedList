@@ -38,11 +38,12 @@ public class MyLinkedList{
 
  public void add(int index, String value)
  {
+   // Operating on the Tail
    if(index == size-1)
    {
      add(value);
    }
-   
+
    size++;
    String current = value;
 
