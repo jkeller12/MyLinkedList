@@ -92,10 +92,51 @@ public class MyLinkedList{
    return "not finished";
  }
 
+
+
+///////////////////////////////
  public String remove(int index)
  {
-   return "not finished";
 
+   Node current = NodeIndex(index);
+
+   // Sort out array out of bound stuff ****
+   Node n = NodeIndex(index+1); // node at index becomes next
+   Node p = NodeIndex(index).getPrev(); // node at (i-1) becomes prev
+
+   if(index == size) // Tail
+   {
+     p.setNext(null);
+     end = p ;
+     return current.get();
+   }
+
+// Empty List
+   else if(size == 0) // Empty list
+   {
+     return null;
+   }
+
+  else if(index == 0) // Head
+  {
+    n.setPrev(null);
+  //  p.setNext(n);
+  //  n.setPrev(current);
+    current.setNext(null);
+    current.setPrev(null);
+    start = n;
+    return current.get();
+  }
+
+  else // Middle
+  {
+    p.setNext(n);
+    n.setPrev(p);
+    current.setNext(null);
+    current.setPrev(null);
+    return current.get();
+
+  }
  }
 
 
