@@ -119,10 +119,10 @@ public class MyLinkedList{
 
   else if(index == 0) // Head
   {
-    n.setPrev(null);
+    n.setPrev(current);
   //  p.setNext(n);
   //  n.setPrev(current);
-    current.setNext(null);
+    current.setNext(n);
     current.setPrev(null);
     start = n;
     return current.get();
