@@ -138,7 +138,12 @@ public class MyLinkedList{
   // Node n = NodeIndex(index+1); // node at index becomes next
   // Node p = NodeIndex(index).getPrev(); // node at (i-1) becomes prev
 
-   if(index == size) // Tail
+  // Empty List
+  if(size == 0) // Empty list
+     {
+       return null;
+     }
+  else if(index == size) // Tail
    {
      Node n = NodeIndex(index+1); // node at index becomes next
      Node p = NodeIndex(index).getPrev(); // node at (i-1) becomes prev
@@ -150,11 +155,7 @@ public class MyLinkedList{
      return current.get();
    }
 
-// Empty List
-   else if(size == 0) // Empty list
-   {
-     return null;
-   }
+
 
   else if(index == 0) // Head
   {
