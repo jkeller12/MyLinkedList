@@ -101,13 +101,18 @@ public class MyLinkedList{
    Node current = NodeIndex(index);
 
    // Sort out array out of bound stuff ****
-   Node n = NodeIndex(index+1); // node at index becomes next
-   Node p = NodeIndex(index).getPrev(); // node at (i-1) becomes prev
+  // Node n = NodeIndex(index+1); // node at index becomes next
+  // Node p = NodeIndex(index).getPrev(); // node at (i-1) becomes prev
 
    if(index == size) // Tail
    {
+     Node n = NodeIndex(index+1); // node at index becomes next
+     Node p = NodeIndex(index).getPrev(); // node at (i-1) becomes prev
+
      p.setNext(null);
      end = p ;
+     size--;
+
      return current.get();
    }
 
@@ -119,21 +124,30 @@ public class MyLinkedList{
 
   else if(index == 0) // Head
   {
-    n.setPrev(current);
-  //  p.setNext(n);
-  //  n.setPrev(current);
-    current.setNext(n);
+    Node n = NodeIndex(index+1); // node at index becomes next
+    Node p = NodeIndex(index).getPrev(); // node at (i-1) becomes prev
+
+    n.setPrev(null);
+
+    current.setNext(null);
     current.setPrev(null);
     start = n;
+    size--;
+
     return current.get();
   }
 
   else // Middle
   {
+    Node n = NodeIndex(index+1); // node at index becomes next
+    Node p = NodeIndex(index).getPrev(); // node at (i-1) becomes prev
+
     p.setNext(n);
     n.setPrev(p);
     current.setNext(null);
     current.setPrev(null);
+    size--;
+
     return current.get();
 
   }
