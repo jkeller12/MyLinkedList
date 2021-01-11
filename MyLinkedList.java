@@ -1,10 +1,13 @@
 public class MyLinkedList{
  private int size;
  private Node start,end;
+
  public MyLinkedList(){
   size = 0;
+/*
   start = null;
   end = null;
+  */
 }
 
  public int size()
@@ -15,21 +18,19 @@ public class MyLinkedList{
  public boolean add(String value)
  {
    size ++;
+   Node N_Value = new Node(value);
 
    if(size == 1)
    {
-     NodeIndex(0).setNext(null);
-     NodeIndex(0).setPrev(null);
-     NodeIndex(0).set(value);
-     start = NodeIndex(0);
-     end = NodeIndex(0);
+     start = N_Value;
+     end = N_Value;
    }
    else{
-     NodeIndex(size-1).set(value);
-     NodeIndex(size-1).setNext(null);
-     NodeIndex(size-2).setNext(value);
-     end = NodeIndex(size-1);
+     N_Value.setPrev(end);
+     end.setNext(N_Value);
+     end = N_Value;
    }
+
    return true;
  }
 
@@ -38,49 +39,47 @@ public class MyLinkedList{
 
  public void add(int index, String value)
  {
-   // Operating on the Tail
-   if(index == size-1)
+   size++;
+   Node current = new Node(value);
+   Node n = NodeIndex(index); // node at index becomes next
+   Node p = NodeIndex(index).getPrev(); // node at (i-1) becomes prev
+
+   if(index == size-1) // Tail
    {
      add(value);
    }
 
-   size++;
-   String current = value;
-
 // Empty List
-   if(size == 1)
+   else if(size == 1) // Empty list
    {
-     NodeIndex(0).setNext(null);
-     NodeIndex(0).setPrev(null);
-     NodeIndex(0).set(value);
-     start = NodeIndex(0);
-     end = NodeIndex(0);
+     add(value);
+
    }
 
-
-// Operating on the Head
-
-  for(int i = size - 2; i > index; i--)
+  else if(index == 0) // Head
   {
-  //  [1]->[2] [2]->[103] [103]->[4] [4]->[null] [...]
-  //  [Value]->[1] [1]->[2] [2]->[103] [103]->[4] [4]->[null]
+    current.setNext(n);
+    current.setPrev(null);
 
-    NodeIndex(i).setNext(NodeIndex(i).get(i));
-    NodeIndex(i).set(NodeIndex(i).getPrev(i));
+    n.setPrev(current);
+    start = current;
   }
-  NodeIndex(index).set(current);
 
-  if(index == 0)
+  else // Middle
   {
-    start = NodeIndex(index);
-    NodeIndex(index).setPrev(null);
+    current.setNext(n);
+    current.setPrev(p);
+
+    n.setPrev(current);
+    p.setNext(current);
   }
+  return;
 
  }
 
  public String get(int index)
  {
-  return NodeIndex(index).get(index);
+  return NodeIndex(index).get();
  }
 
  public String set(int index, String value)
@@ -113,10 +112,9 @@ private Node NodeIndex(int index)
   Node current = start;
   for(int i = 0; i < index; i++)
   {
-    String Next_Value = current.getNext(i);
-    Node Next_Node = new Node(Next_Value);
-    current = Next_Node;
+    current = current.getNext();
   }
+
   return current;
 }
 
