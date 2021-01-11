@@ -41,8 +41,6 @@ public class MyLinkedList{
  {
    size++;
    Node current = new Node(value);
-   Node n = NodeIndex(index); // node at index becomes next
-   Node p = NodeIndex(index).getPrev(); // node at (i-1) becomes prev
 
    if(index == size-1) // Tail
    {
@@ -58,6 +56,7 @@ public class MyLinkedList{
 
   else if(index == 0) // Head
   {
+    Node n = NodeIndex(index); // node at index becomes next
     current.setNext(n);
     current.setPrev(null);
 
@@ -67,6 +66,8 @@ public class MyLinkedList{
 
   else // Middle
   {
+    Node n = NodeIndex(index); // node at index becomes next
+    Node p = NodeIndex(index).getPrev(); // node at (i-1) becomes prev
     current.setNext(n);
     current.setPrev(p);
 
@@ -89,7 +90,19 @@ public class MyLinkedList{
 
  public String toString()
  {
-   return "not finished";
+   String str = new String("[");
+   Node current = start;
+   while(current != null)
+   {
+     str = str + current.get();
+     if(current.getNext() != null)
+     {
+       str = str + ", ";
+     }
+     current = current.getNext();
+   }
+
+   return str + ("]");
  }
 
 
