@@ -19,11 +19,12 @@ public class MyLinkedList{
  {
    size ++;
    Node N_Value = new Node(value);
-
+   N_Value.setNext(null);
    if(size == 1)
    {
      start = N_Value;
      end = N_Value;
+     N_Value.setPrev(null);
    }
    else{
      N_Value.setPrev(end);
