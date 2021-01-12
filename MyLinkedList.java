@@ -228,7 +228,6 @@ public class MyLinkedList{
  }
 
 
- //Any helper method that returns a Node object MUST BE PRIVATE!
 
 private Node NodeIndex(int index)
 {
