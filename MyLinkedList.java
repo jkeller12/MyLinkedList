@@ -43,17 +43,21 @@ public class MyLinkedList{
 
    Node current = new Node(value);
 
-   if(index == size) // Tail
-   {
+  if(size == 0 && index == 0) // Empty list
+  {
+      start = current;
+      end = current;
+      current.setNext(null);
+      current.setPrev(null);
+      size++;
+    }
+
+  else if(index == size) // Tail
+  {
      add(value);
    }
 
-// Empty List
-   else if(size == 0) // Empty list
-   {
-     add(value);
 
-   }
 
   else if(index == 0) // Head
   {
@@ -79,7 +83,6 @@ public class MyLinkedList{
     size++;
   }
   return;
-
  }
 
  public String get(int index)
@@ -89,8 +92,9 @@ public class MyLinkedList{
 
  public String set(int index, String value)
  {
+   String Return_Value = NodeIndex(index).get();
    NodeIndex(index).set(value);
-   return value;
+   return Return_Value;
  }
 
  public String toString()
@@ -109,6 +113,7 @@ public class MyLinkedList{
 
    return str + ("]");
  }
+
 /// Implement
  public String toStringReversed()
  {
@@ -135,18 +140,34 @@ public class MyLinkedList{
 
    Node current = NodeIndex(index);
 
-   // Sort out array out of bound stuff ****
-  // Node n = NodeIndex(index+1); // node at index becomes next
-  // Node p = NodeIndex(index).getPrev(); // node at (i-1) becomes prev
-
   // Empty List
   if(size == 0) // Empty list
-     {
-       return null; /// I think calling NodeIndex on size 0 will throw index out of bounds
-     }
-  else if(index == size) // Tail
+  {
+   return "[]";
+  }
+
+  if(size == 1)
+  {
+    String Return_Value = NodeIndex(index).get();
+    start = null;
+    end = null;
+    size--;
+    return Return_Value;
+  }
+
+  else if(index == 0) // Head
+  {
+    Node n = NodeIndex(1); // node at index becomes next
+    n.setPrev(null);
+    current.setNext(null);
+    current.setPrev(null);
+    start = n;
+    size--;
+    return current.get();
+  }
+
+  else if(index == size-1) // Tail
    {
-     Node n = NodeIndex(index+1); // node at index becomes next
      Node p = NodeIndex(index).getPrev(); // node at (i-1) becomes prev
 
      p.setNext(null);
@@ -156,22 +177,6 @@ public class MyLinkedList{
      return current.get();
    }
 
-
-
-  else if(index == 0) // Head
-  {
-    Node n = NodeIndex(index+1); // node at index becomes next
-    Node p = NodeIndex(index).getPrev(); // node at (i-1) becomes prev
-
-    n.setPrev(null);
-
-    current.setNext(null);
-    current.setPrev(null);
-    start = n;
-    size--;
-
-    return current.get();
-  }
 
   else // Middle
   {
@@ -198,6 +203,19 @@ public class MyLinkedList{
  */
  public void extend(MyLinkedList other)
  {
+   if (start == null)
+   {
+     start = other.start;
+     end = other.end;
+     size = other.size();
+     return;
+   }
+
+   if(other.start == null)
+   {
+     return;
+   }
+
    end.setNext(other.start);
    other.start.setPrev(end);
 
