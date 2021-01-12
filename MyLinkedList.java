@@ -142,7 +142,7 @@ public class MyLinkedList{
   // Empty List
   if(size == 0) // Empty list
      {
-       return null;
+       return null; /// I think calling NodeIndex on size 0 will throw index out of bounds
      }
   else if(index == size) // Tail
    {
